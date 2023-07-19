@@ -1,0 +1,56 @@
+<div class="product-line-item" data-product-line-item="${lineItem.UUID}">
+    <div class="row">
+        <div class="col-12 col-md-10 mb-3 mb-md-0">
+            <div class="d-flex flex-row">
+                <div class="item-image">
+                    <a href="${lineItem.url}">
+                        <img class="product-image" src="${lineItem.images.small[0].url}"
+                            alt="${lineItem.images.small[0].alt}" title="${lineItem.images.small[0].title}" />
+                    </a>
+                </div>
+                <div class="product-line-item-details flex-grow-1">
+                    <div class="line-item-header">
+                        <isinclude template="checkout/productCard/productCardProductName" />
+                    </div>
+                    <div class="item-attributes">
+                        <isloop items="${lineItem.variationAttributes}" var="attribute">
+                            <div class="line-item-attributes">
+                                <span class="attribute-label">
+                                    ${attribute.displayName}:
+                                </span>
+                                <span class="attribute-value">
+                                    ${attribute.displayValue}
+                                </span>
+                            </div>
+                        </isloop>
+
+                        <div class="item-options">
+                            <isloop items="${lineItem.options}" var="option">
+                                <div class="line-item-option">
+                                    ${option.displayName}
+                                </div>
+                            </isloop>
+                        </div>
+                        
+                        <isinclude template="checkout/productCard/productCardQuantityDisplay" />
+
+                        <div class="line-item-total-price">
+                            <div class="item-total-${lineItem.UUID} price">
+                                <div class="d-flex">
+                                    <div
+                                        class="strike-through ${!lineItem.priceTotal.nonAdjustedPrice ? 'non-adjusted-price' : ''}">
+                                        ${lineItem.priceTotal.nonAdjustedPrice}
+                                    </div>
+                                    <div class="pricing line-item-total-price-amount item-total-${lineItem.UUID}">
+                                        ${lineItem.priceTotal.price}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

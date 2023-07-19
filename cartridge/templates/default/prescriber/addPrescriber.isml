@@ -1,0 +1,39 @@
+<iscomment> <isset name="activeNavigation" value="prescribers" scope="page" /> </iscomment>
+
+<iscomment> <isdecorate template="common/layout/account"> </iscomment>
+	<isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/prescriber.js');
+    </isscript>
+
+	<div class="container">
+		<div class="account-header">
+			<h2>Add Prescriber</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-md-8">
+				<nav>
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-search-tab" data-toggle="tab" href="#nav-search"
+							role="tab">Search Prescribers</a>
+						<a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new"
+							role="tab">Add new Prescriber</a>
+					</div>
+				</nav>
+
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-search" role="tabpanel">
+						<isinclude template="prescriber/components/searchPrescribersForm" />
+					</div>
+					<div class="tab-pane fade" id="nav-new" role="tabpanel">
+						<isinclude template="prescriber/components/newPrescriberForm" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<iscomment> </isdecorate> </iscomment>

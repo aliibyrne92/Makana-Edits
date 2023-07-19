@@ -1,0 +1,81 @@
+<form id="prescriberZip" class="trackorder" method="POST" name="newprescriberform">
+
+	<!-- Name -->
+	<div class="form-group row required">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-name">Name</label>
+		<div class="col-sm-9">
+			<input id="new-prescriber-form-name" name="newPrescriberName" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- Address -->
+	<div class="form-group row required">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-address">Address</label>
+		<div class="col-sm-9">
+			<input id="new-prescriber-form-address" name="newPrescriberAddress" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- City -->
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-city">City</label>
+		<div class="col-sm-9">
+			<input id="new-prescriber-form-city" name="newPrescriberCity" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- State -->
+	<div class="form-group row required">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-state">State</label>
+		<select id="new-prescriber-form-state" class="col-sm-8 ml-3 form-control" name="newPrescriberState" required>
+			<isloop items=${pdict.addressForm.states.stateCode.options} var="state">
+				<option id="${state.id}" value="${state.htmlValue}" <isif condition="${state.selected}">selected</isif>>
+					${state.label || ' '}
+				</option>
+			</isloop>
+		</select>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- Zip Code -->
+	<isinclude template="components/prescriberZipCode" />
+
+	<!-- Phone -->
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-phone">Phone</label>
+		<div class="col-sm-9">
+			<input id="new-prescriber-form-phone" name="newPrescriberPhone" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- Fax -->
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3" for="new-prescriber-form-fax">Fax</label>
+		<div class="col-sm-9">
+			<input id="new-prescriber-form-fax" name="newPrescriberFax" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+    <div class="row">
+        <div class="col-6">
+            <a href="${URLUtils.url('Prescription-Show')}" class="btn btn-block btn-outline-primary">
+				${Resource.msg('button.cancel','account',null)}
+			</a>
+        </div>
+		<div class="col-6">
+			<button type="button"
+				id="add-new-prescriber-button"
+				class="btn btn-save btn-block btn-primary" 
+				data-prescriber-add-new-url="${URLUtils.url('Prescriber-AddNew')}"
+				data-prescriber-list-url="${URLUtils.url('Prescription-Show')}">
+				${Resource.msg('button.add.new.prescriber', 'makana', null)}
+			</button>
+		</div>
+	</div>
+
+</form>

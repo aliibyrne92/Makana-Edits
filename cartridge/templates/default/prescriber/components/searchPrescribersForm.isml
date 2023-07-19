@@ -1,0 +1,61 @@
+<form id="search-prescribers-form" class="trackorder" method="POST" name="search-prescribers-form">
+
+	<!-- Name -->
+	<div class="form-group row required">
+		<label class="col-form-label col-sm-3" for="search-prescribers-form-name">Name</label>
+		<div class="col-sm-9">
+			<input id="search-prescribers-form-name" name="searchPrescriberName" class="form-control" type="text" required>
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- City -->
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3" for="search-prescribers-form-city">City</label>
+		<div class="col-sm-9">
+			<input type="text" class="form-control" id="search-prescribers-form-city" name="searchPrescriberCity">
+		</div>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- State -->
+	<div class="form-group row required">
+		<label class="col-form-label col-sm-3" for="search-prescribers-form-state">State</label>
+		<select id="search-prescribers-form-state" class="col-sm-8 ml-3 form-control" name="searchPrescriberState" required>
+			<isloop items=${pdict.addressForm.states.stateCode.options} var="state">
+				<option id="${state.id}" value="${state.htmlValue}" <isif condition="${state.selected}">selected</isif>>
+					${state.label || ' '}
+				</option>
+			</isloop>
+		</select>
+		<div class="invalid-feedback"></div>
+	</div>
+
+	<!-- Zip Code -->
+	<isinclude template="components/prescriberZipCode" />
+
+    <div class="row">
+        <div class="col-6">
+            <a href="${URLUtils.url('Prescription-Show')}" class="btn btn-block btn-outline-primary">
+				${Resource.msg('button.cancel','account',null)}
+			</a>
+        </div>
+		<div class="col-6">
+			<button type="button" name="dave" class="btn btn-save btn-block btn-primary" id="search-prescribers-button"
+				data-prescriber-search-url="${URLUtils.url('Prescriber-Search')}">
+				${Resource.msg('button.search.prescribers', 'makana', null)}
+			</button>
+		</div>
+	</div>
+
+</form>
+
+<form id="add-existing-prescriber-form" 
+	data-customer-id="${pdict.customerId}"
+	data-prescriber-add-existing-url="${URLUtils.url('Prescriber-AddExisting')}"
+	data-prescriber-list-url="${URLUtils.url('Prescription-Show')}">
+	<div class="row">
+		<div id="prescriberListContainer" class="container">
+		</div>
+	</div>
+</form>

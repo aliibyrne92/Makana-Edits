@@ -1,0 +1,116 @@
+<iscomment> <isset name="activeNavigation" value="new-prescription" scope="page" /> </iscomment>
+
+<iscomment> <isdecorate template="common/layout/account"> </iscomment>
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/orderHistory.js');
+    </isscript>
+
+    <div class="container">
+        <div class="">
+            <h2>New Prescription</h2>
+
+            <div class="row">
+                <div class="col-10">
+                <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+                    <div class="card-body">
+
+                        <input type=hidden name="orgid" value="00D5e000002FAt3">
+                        <input type=hidden name="retURL" value="${URLUtils.abs('Prescription-Details')}">
+                        
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="00N5e00000amD2N">Name: </label>
+                            <div class="col-sm-9">
+                                <input id="00N5e00000amD2N" maxlength="80" name="00N5e00000amD2N" size="40" type="text" class="form-control" value="${pdict.CurrentCustomer.profile.firstName} ${pdict.CurrentCustomer.profile.lastName}" />
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="email">Email: </label>
+                            <div class="col-sm-9">
+                                <input id="email" maxlength="80" name="email" size="40" type="text" class="form-control" value="${pdict.CurrentCustomer.profile.email}" />
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="phone">Phone: </label>
+                            <div class="col-sm-9">
+                                <input id="phone" maxlength="80" name="phone" size="40" type="text" class="form-control" value="${pdict.CurrentCustomer.profile.phoneHome}" />
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="subject">Subject: </label>
+                            <div class="col-sm-9">
+                                <input id="subject" maxlength="80" name="subject" size="40" type="text" class="form-control" value="New Prescription"/>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="description">Description: </label>
+                            <div class="col-sm-9">
+                                <input id="description" maxlength="80" name="description" size="40" type="text" class="form-control" />
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="00N5e00000amD23">Drug: </label>
+                            <div class="col-sm-9">
+                                <isinclude template="product/components/search" />
+                                <iscomment> <input id="00N5e00000amD23" maxlength="80" name="00N5e00000amD23" size="40" type="text" class="form-control" /> </iscomment>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+ 
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="00N5e00000ThUvK">Dosage: </label>
+                                <div class="col-sm-9">
+                                <select id="00N5e00000ThUvK" maxlength="80" name="00N5e00000ThUvK" class="form-control">
+                                    <option value=""></option>
+                                    <option value="5MG"> 5 MG</option>
+                                    <option value="10MG"> 10 MG</option>
+                                    <option value="20MG"> 20 MG</option>
+                                    <option value="40MG"> 40 MG</option>
+                                </select>
+                                </div>
+                            <iscomment> <div class="col-sm-9">
+                                <input id="00N5e00000ThUvK" value="hello" maxlength="80" name="00N5e00000ThUvK" size="40" type="text" class="form-control" />
+                            </div> </iscomment>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="00N5e00000Ti9UO">Prescribing Doctor: </label>
+                            <div class="col-sm-9">
+                                <select id="00N5e00000Ti9UO" maxlength="80" name="00N5e00000Ti9UO" class="form-control">
+                                    <isloop iterator = "${pdict.currentPrescribers}" alias = "prescriber">
+                                        <option value = "${prescriber.name}">${prescriber.name}</option>
+                                    </isloop>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        
+                        <div class="form-group row required">
+                            <label class="col-form-label col-sm-3" for="00N5e00000ThUzh">Refill: </label>
+                            <div class="col-sm-9">
+                                <input id="00N5e00000ThUzh" maxlength="80" name="00N5e00000ThUzh" size="40" type="text" class="form-control" />
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <input type="hidden" id="external" name="external" value="1" /><br>
+                        <div class="row">
+                            <input class="btn btn-outline-primary btn-block" type="submit" name="submit" value="Submit New Prescription">
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+<iscomment> </isdecorate> </iscomment>

@@ -1,0 +1,4 @@
+<img class="logo" src="${URLUtils.staticURL('/images/MakanaHealth-primary-logo-01.png')}"
+     alt="${Resource.msg('global.storename', 'common', null)}" />
+<img class="logo-alt" src="${URLUtils.staticURL('/images/MakanaHealth-secondary-logo-01.png')}"
+     alt="${Resource.msg('global.storename', 'common', null)}" />

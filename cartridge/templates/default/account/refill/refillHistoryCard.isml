@@ -1,0 +1,66 @@
+<isset name="product" value="${pdict.product}" scope="page" />
+
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-12 col-md-10 mb-3 mb-md-0">
+            <div class="row">
+                <div class="col-12 col-md-9 d-flex flex-column">
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.dateordered', 'account', null)}
+                        </span>
+                        <isprint value="${order.creationDate}" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.prescriptionnumber', 'makana', null)}
+                        </span>
+                        <isprint value="${order.orderNumber}" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.totalitems', 'account', null)}
+                        </span>
+                        <isprint value="${order.productQuantityTotal}" formatter="#" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.ordertotal', 'account', null)}
+                        </span>
+                        ${order.priceTotal}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <iscomment> <div class="col-12 col-md-2">
+            <div class="row">
+                <a href="${URLUtils.url('Refill-Details', 'orderID', order.orderNumber, 'orderFilter', pdict.orderFilter)}"
+                    class="btn btn-outline-primary btn-block"
+                    aria-label="${Resource.msgf('label.refillhistory.orderdetails', 'makana', null, order.orderNumber)}">
+                    ${Resource.msg('label.refillhistory.orderdetails', 'makana', null)}
+                </a>
+            </div>
+        </div> </iscomment>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="order-list">
+                <br/>
+                <div class="card order-product-summary">
+                    <div class="card-body">
+                        <div class="product-summary-block">
+                            <isloop items="${order.orderModel.shipping}" var="shippingModel">
+                                <isloop items="${shippingModel.productLineItems.items}" var="lineItem">
+                                    <isinclude template="account/refill/refillProductCard" />
+                                </isloop>
+                            </isloop>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

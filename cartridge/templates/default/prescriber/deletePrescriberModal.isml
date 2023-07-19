@@ -1,0 +1,26 @@
+<div class="modal fade" id="deletePrescriberModal" tabindex="-1" role="dialog" aria-labelledby="deletePrescriberModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header delete-confirmation-header">
+                <h4 class="modal-title" id="deletePrescriberModal">Delete Prescriber</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body delete-confirmation-body">
+                Are you sure you want to remove the following prescriber from your profile?
+                <p class="product-to-remove"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                    ${Resource.msg('button.cancel','address',null)}
+                </button>
+                <button type="button" id="delete-confirmation-button" 
+                    class="btn btn-primary delete-confirmation-btn" 
+                    data-dismiss="modal"
+                    data-prescriber-remove-url="${URLUtils.url('Prescriber-Remove')}"
+                    data-prescriber-list-url="${URLUtils.url('Prescription-Show')}">
+                    ${Resource.msg('button.confirm','address',null)}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

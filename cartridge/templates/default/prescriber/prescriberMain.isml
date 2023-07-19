@@ -1,0 +1,48 @@
+<iscomment> <isset name="activeNavigation" value="prescription-main" scope="page" /> </iscomment>
+
+<iscomment> <isdecorate template="common/layout/account"> </iscomment>
+  <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/prescriber.js');
+  </isscript>
+
+  <isinclude template="prescriber/deletePrescriberModal" />
+
+  <div class="container">
+    <div class="account-header">
+      <h2>My Prescribers</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-prescribers-tab" data-toggle="tab" href="#nav-list" role="tab">
+              Current
+            </a>
+            <a class="nav-item nav-link" id="nav-current-tab" data-toggle="tab" href="#nav-search" role="tab">
+              Search
+            </a>
+            <a class="nav-item nav-link" id="nav-add-new-tab" data-toggle="tab" href="#nav-add-new" role="tab">
+              Add New
+            </a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane mt-3 fade show active" id="nav-list" role="tabpanel">
+              <isinclude template="prescriber/listPrescribers" />
+            </div>
+            <div class="tab-pane mt-3 fade" id="nav-search" role="tabpanel">
+              <isinclude template="prescriber/components/searchPrescribersForm" />
+            </div>
+            <div class="tab-pane mt-3 fade" id="nav-add-new" role="tabpanel">
+              <isinclude template="prescriber/components/newPrescriberForm" />
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<iscomment> </isdecorate> </iscomment>

@@ -1,0 +1,29 @@
+<isif condition="${pdict.name === null}">
+    <div class="user mr-4">
+        <a href="${URLUtils.https('Login-Show')}">
+           <i class="far fa-user fa-md" aria-hidden="true"></i>
+           <span class="user-message ml-1">${Resource.msg('link.header.login', 'account', null)}</span>
+            
+        </a>
+    </div>
+    <div class="mr-3 wishlist">
+        <a href="${URLUtils.https('Wishlist-Show')}">
+            <span class="sr-only">${Resource.msg('link.wishlist', 'account', null)}</span>
+            <i class="far fa-heart fa-md" aria-hidden="true"></i>
+        </a>
+    </div>
+<iselse/>
+    <div class="mr-4">
+        <a href="${URLUtils.https('Account-Show')}">
+            <i class="far fa-user fa-md" aria-hidden="true"></i>
+             <span class="ml-1">${Resource.msgf('header.greeting', 'account', null, pdict.name)}</span>
+           
+        </a>
+    </div>
+    <div class="mr-3 wishlist">
+        <a href="${URLUtils.https('Wishlist-Show')}">
+            <span class="sr-only">${Resource.msg('link.wishlist', 'account', null)}</span>
+            <i class="far fa-heart fa-md" aria-hidden="true"></i>
+        </a>
+    </div>
+</isif>

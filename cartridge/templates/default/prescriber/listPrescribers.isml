@@ -1,0 +1,60 @@
+<iscomment> <isset name="activeNavigation" value="prescribers" scope="page" /> </iscomment>
+
+<iscomment> <isdecorate template="common/layout/account"> </iscomment>
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/prescriber.js');
+    </isscript>
+
+    <isinclude template="prescriber/deletePrescriberModal" />
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 ${pdict.currentPrescribers.length !== 0 ? 'd-none' : ''}">
+                <div class="no-addresses-msg">
+                    No current prescribers
+                </div>
+            </div>
+
+            <div class="col-12">
+                <!-- Rows for current prescribers -->
+                <div class="list-group list-group-flush">
+                    <isloop items="${pdict.currentPrescribers}" var="address">
+                        <div class="list-group-item">
+                            <div class="row justify-content-between">
+                                <div class="address-summary">
+                                    <div class="address-id">
+                                        <span class="font-weight-bold">${address.id}</span>
+                                    </div>
+                                    <div>${address.name}</div>
+                                    <div>${address.city}, ${address.state} ${address.zip}</div>
+                                    <div>${address.phone}</div>
+                                </div>
+                                <div class="modify-address">
+                                    <button 
+                                        type="button" 
+                                        class="remove-prescriber-button btn btn-link" 
+                                        data-toggle="modal"
+                                        data-target="#deletePrescriberModal" 
+                                        data-id="${address.id}"
+                                        data-prescriber-remove-url="${URLUtils.url('Prescriber-Remove')}"
+                                        data-prescriber-list-url="${URLUtils.url('Prescription-Show')}"
+                                        aria-label="${Resource.msg('label.addressbook.deleteaddress', 'account', null)}"
+                                        isprint value="${address.address.ID == pdict.addressBook[0].address.ID ? 'data-default="true"' : ''}" encoding="off" 
+                                    />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </isloop>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<iscomment> </isdecorate> </iscomment>

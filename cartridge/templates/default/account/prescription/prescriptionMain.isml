@@ -1,0 +1,48 @@
+<isset name="activeNavigation" value="prescription-main" scope="page" />
+
+<isdecorate template="common/layout/account">
+  <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/prescriber.js');
+    </isscript>
+
+  <div class="container">
+    <div class="account-header">
+      <h2>Prescriptions</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-prescribers-tab" data-toggle="tab" href="#nav-prescribers"
+              role="tab">Prescribers</a>
+            <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new-prescriptions" role="tab">New
+              Prescription</a>
+            <a class="nav-item nav-link" id="nav-refills-tab" data-toggle="tab" href="#nav-refills" role="tab">Prescription
+              Refills</a>
+            <a class="nav-item nav-link" id="nav-renewals-tab" data-toggle="tab" href="#nav-renewals" role="tab">Prescription
+              Renewals</a>
+          </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane mt-3 fade show active" id="nav-prescribers" role="tabpanel">
+              <isinclude template="prescriber/prescriberMain" />
+            </div>
+            <div class="tab-pane mt-3 fade" id="nav-new-prescriptions" role="tabpanel">
+              <isinclude template="account/prescription/newPrescription" />
+            </div>
+            <div class="tab-pane mt-3 fade" id="nav-refills" role="tabpanel">
+              <isinclude template="account/refill/history" />
+            </div>
+            <div class="tab-pane mt-3 fade" id="nav-renewals" role="tabpanel">
+              <isinclude template="account/renewal/history" />
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</isdecorate>

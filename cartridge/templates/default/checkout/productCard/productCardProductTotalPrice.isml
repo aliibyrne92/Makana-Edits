@@ -1,0 +1,12 @@
+
+<div class="d-flex justify-content-end">
+    <isif condition="${lineItem.mhCopay}">
+        ${Resource.msg('label.healthplanprice', 'makana', null)} 
+    </isif>
+    <div class="strike-through ${!lineItem.priceTotal.nonAdjustedPrice ? 'non-adjusted-price' : ''}">
+        ${lineItem.priceTotal.nonAdjustedPrice}
+    </div>
+    <div class="pricing line-item-total-price-amount item-total-${lineItem.UUID}">
+        ${lineItem.priceTotal.price}
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<isset name="product" value="${pdict.product}" scope="page" />
+
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-12 col-md-10 mb-3 mb-md-0">
+            <div class="row">
+                <div class="col-12 col-md-9 d-flex flex-column">
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.dateordered', 'account', null)}
+                        </span>
+                        <isprint value="${order.creationDate}" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.prescriptionnumber', 'makana', null)}
+                        </span>
+                        <isprint value="${order.orderNumber}" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.totalitems', 'account', null)}
+                        </span>
+                        <isprint value="${order.productQuantityTotal}" formatter="#" />
+                    </div>
+                    <div>
+                        <span class="font-weight-bold">
+                            ${Resource.msg('label.orderhistory.ordertotal', 'account', null)}
+                        </span>
+                        ${order.priceTotal}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-2">
+            <div class="row">
+
+                <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8" method="POST">
+
+                    <input type=hidden name="orgid" value="00D5e000002FAt3">
+                    <input type=hidden name="retURL" value="${URLUtils.abs('Renewal-Details', 'orderID', order.orderNumber, 'orderFilter', pdict.orderFilter)}">
+
+                    <input id="name" maxlength="80" name="name" size="20" type="text" value="${pdict.CurrentCustomer.profile.firstName} ${pdict.CurrentCustomer.profile.lastName}" style="display:none"/>
+                    <input id="email" maxlength="80" name="email" size="20" type="text" value="${pdict.CurrentCustomer.profile.email}" style="display:none" />
+                    <input id="phone" maxlength="40" name="phone" size="20" type="text" value="${pdict.CurrentCustomer.profile.phoneHome}" style="display:none"/>
+                    <input id="subject" maxlength="80" name="subject" size="20" type="text" value="Renewal request for Prescription ${order.orderNumber}" style="display:none" />                    
+
+                    <select id="00N5e00000OgDH6" name="00N5e00000OgDH6" title="Drug"  style="display:none">
+                        <option value="">--None--</option>
+                        <option value="Cholecap" selected>Cholecap</option>
+                        <option value="Katygova">Katygova</option>
+                        <option value="Quattroglu">Quattroglu</option>
+                        <option value="Rofrgubu">Rofrgubu</option>
+                    </select>
+
+                    <textarea name="description" style="display:none">Product is ${order.orderModel.items.items[0].productName}</textarea>
+
+                    <input type="hidden"  id="external" name="external" value="1" /><br>
+
+                    <input class="btn btn-outline-primary btn-block" type="submit" name="submit" 
+                        value="${Resource.msg('label.renewalhistory.renew', 'makana', null)}">
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="order-list">
+                <br/>                
+                <div class="card order-product-summary">
+                    <div class="card-body">
+                        <div class="product-summary-block">
+                            <isloop items="${order.orderModel.shipping}" var="shippingModel">
+                                <isloop items="${shippingModel.productLineItems.items}" var="lineItem">
+                                    <isinclude template="account/renewal/renewalProductCard" />
+                                </isloop>
+                            </isloop>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

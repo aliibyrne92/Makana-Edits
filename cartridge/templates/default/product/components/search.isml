@@ -1,0 +1,30 @@
+<isscript>
+    var assets = require('*/cartridge/scripts/assets.js');
+    assets.addJs('/js/productSearch.js');
+</isscript>
+
+<div class="site-search d-flex align-items-center">
+    <span class="search d-none d-lg-inline"></span>
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="far fa-xs fa-search" aria-hidden="true"></i>
+            </span>
+        </div>
+        <input id="00N5e00000amD23" class="form-control product-search-field" type="search" name="00N5e00000amD23" value=""
+            placeholder="${Resource.msg('label.header.searchwatermark', 'common', null)}"
+            aria-label="${Resource.msg('label.header.searchwatermark', 'common', null)}" autocomplete="off" />
+        <div class="input-group-append d-lg-none">
+            <span class="input-group-text">
+                <button class="btn" type="button">
+                    <i class="fal fa-sm fa-times" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <div class="product-suggestions-wrapper" data-url="${URLUtils.url('SearchServices-GetProductSuggestions', 'q')}"></div>
+
+    <input type="hidden" value="${pdict.locale}" name="lang" />
+</div>

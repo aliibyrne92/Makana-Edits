@@ -1,0 +1,29 @@
+<iscomment> <isset name="activeNavigation" value="renewal-list" scope="page" /> </iscomment>
+
+<isdecorate template="common/layout/account">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/orderTrack.css');
+        assets.addCss('/css/account/profile.css');
+    </isscript>
+
+    <div class="container receipt ${pdict.order.shipping.length > 1 ? 'multi-ship' : ''}">
+        <div class="row mb-3">
+            <div class="order-confirmation-messages col-12">
+                <div class="summary-details">
+                    <span class="order-number-label">
+                        <i class="far fa-thumbs-up"></i>
+                        Renewal case sent to prescriber!
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="my-account">
+            <a href="${pdict.exitLinkUrl}" title="${Resource.msg('link.orderdetails.myaccount', 'account', null)}"
+                aria-label="${Resource.msg('link.orderdetails.myaccount', 'account', null)}"
+                class="btn btn-outline-primary">
+                ${pdict.exitLinkText}
+            </a>
+        </div>
+    </div>
+</isdecorate>
