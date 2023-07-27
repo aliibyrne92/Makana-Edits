@@ -1,0 +1,82 @@
+<isset name="communityLink" value="${'#'}" scope="page">
+<isif condition="${'DittoHeaderCommunityLink' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom
+                 .DittoHeaderCommunityLink != ''}">
+    <isset name="communityLink" value="${dw.system.Site.current.preferences.custom.DittoHeaderCommunityLink}" scope="page" />
+</isif>
+<isset name="helpLink" value="${'#'}" scope="page">
+<isif condition="${'DittoHeaderHelpLink' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom
+                 .DittoHeaderHelpLink != ''}">
+    <isset name="helpLink" value="${dw.system.Site.current.preferences.custom.DittoHeaderHelpLink}" scope="page" />
+</isif>
+<isset name="b2bSite" value="${'#'}" scope="page">
+<isif condition="${'b2bSite' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom
+                 .b2bSite != ''}">
+    <isset name="b2bSite" value="${dw.system.Site.current.preferences.custom.b2bSite}" scope="page" />
+</isif>
+<header class="site-header">
+    <isinclude template="components/header/serviceCloudBanner" />
+    <section class="preheader d-none d-lg-block">
+        <nav class="h-100 d-flex align-items-center justify-content-between">
+            <section class="d-flex align-items-center">
+                <div class="pl-3">
+                    <isinclude url="${URLUtils.url('Page-Locale')}" />
+                </div>
+            </section>
+            <section class="promo-banner">
+                <isslot id="header-promo-banner-m" description="Slot above the site header" context="global" />
+            </section>
+            <section class="d-flex align-items-center">
+                 <div class="d-none d-md-inline-block for-b2b">
+                    <a href="${b2bSite}" target="_blank"
+                        title="${Resource.msg('global.header.B2Bsite', 'common', null)}">
+                       <img src="https://makana-health-mc.s3.us-east-2.amazonaws.com/MakanaHealth-secondary-logo-01.png">
+                        ${Resource.msg('global.header.B2Bsite', 'common', null)}
+                    </a>
+                </div>
+                <isinclude url="${URLUtils.url('Account-Header')}" />
+                <div class="d-none d-md-inline-block">
+                    <div class="minicart" data-action-url="${URLUtils.url('Cart-MiniCartShow')}">
+                        <isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+                    </div>
+                </div>
+            </section>
+        </nav>
+    </section>
+    <section class="main-menu">
+        <nav class="navbar navbar-light navbar-expand-lg">
+            <div class="navbar-inner d-flex align-items-center justify-content-between w-100 px-lg-3">
+                <div class="navbar-brand mr-md-3">
+                    <button class="navbar-toggler" type="button" data-toggle="slide-collapse" data-target=".main-menu"
+                        aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fal fa-bars mr-1" aria-hidden="true"></i>
+                    </button>
+                    <a href="${URLUtils.url('Home-Show')}" title="${Resource.msgf('global.homepage.tooltip', 'common', null, Resource.msg('global.storename', 'common', null), Resource.msg(
+                                                                  'global.home', 'common', null))}">
+                        <isinclude template="components/header/logo" />
+                    </a>
+                </div>
+                <isinclude url="${URLUtils.url('Page-IncludeHeaderMenu')}" />
+                <div class="right-nav">
+                    <isinclude template="components/header/search" />
+                    <div class="right-nav-minified">
+                        <isinclude url="${URLUtils.url('Account-Header')}" />
+                        <div class="d-none d-md-inline-block">
+                            <div class="minicart" data-action-url="${URLUtils.url('Cart-MiniCartShow')}">
+                                <isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex d-lg-none">
+                    <a href="#" class="mobile-search_btn">
+                        <i class="far fa-lg fa-search" aria-hidden="true"></i>
+                    </a>
+                    <div class="minicart" data-action-url="${URLUtils.url('Cart-MiniCartShow')}">
+                        <isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="minicart-container d-flex flex-column"></div>
+</header>
